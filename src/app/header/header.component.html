@@ -1,0 +1,28 @@
+<nav>
+  <div class="nav-wrapper">
+    <a routerLink="/" class="brand-logo center">MyInterest</a>
+    <a materialize="sideNav" href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
+    <ul *ngIf="userService.user" class="left hide-on-med-and-down">
+      <li><a routerLink="/news">News</a></li>
+      <li><a routerLink="/social">Social</a></li>
+      <li><a routerLink="/profile">Profile</a></li>
+
+    </ul>
+    <ul class="side-nav" id="mobile-demo">
+      <li><a routerLink="/news">News</a></li>
+      <li><a routerLink="/social">Social</a></li>
+      <li><a routerLink="/profile">Profile</a></li>
+    </ul>
+    <ul class="right hide-on-med-and-down">
+      <li class="li">
+        <div class="input-field col s10">
+          <i class="material-icons prefix">search</i>
+          <input type="text" id="autoComplete" materialize="autocomplete" [materializeParams]="[autocompleteInit]" *ngIf="!isDisabled">
+          <label for="autoComplete">Search people</label>
+        </div>
+      </li>
+      <li><a routerLink="/login" *ngIf="!userService.user">Login</a></li>
+      <li><a (click)="userService.logout()" *ngIf="userService.user">Logout</a></li>
+    </ul>
+  </div>
+</nav>

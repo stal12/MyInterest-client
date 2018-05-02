@@ -1,0 +1,16 @@
+<div class="container">
+  <h2>Friends</h2>
+  <br>
+  <br>
+  <div align="left">
+    <ul class="collection">
+      <li class="collection-item avatar" *ngFor="let user of friends">
+        <img [src]="user.image" alt="" class="circle">
+        <span class="title"><strong><a [routerLink]="['/', 'user', user.id]">{{user.name | uppercase}}</a></strong></span>
+        <p><a [routerLink]="['/', 'user', user.id]" style="color: black;">Go to personal page</a></p>
+      </li>
+    </ul>
+
+  </div>
+
+</div>

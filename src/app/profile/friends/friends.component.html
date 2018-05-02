@@ -1,0 +1,60 @@
+<div class="container">
+  <h2>Your friends</h2>
+  <br>
+  <div class="div" *ngIf="!ready">
+    <div class="progress">
+      <div class="indeterminate"></div>
+    </div>
+  </div>
+  <div *ngIf="ready">
+  <p *ngIf="friends.length < 1 "> go out and make new friends</p>
+  </div>
+  <br>
+  <div *ngIf="friends.length" align="left">
+    <ul class="collection">
+      <li class="collection-item avatar" *ngFor="let user of friends; let i = index">
+        <img [src]="user.image" alt="" class="circle">
+        <span class="title"><strong><a [routerLink]="['/', 'user', user.id]">{{user.name | uppercase}}</a></strong></span>
+        <p><a [routerLink]="['/', 'user', user.id]" style="color: black;">Go to personal page</a></p>
+        <a (click)="openModal(i)" materialize="tooltip" class="btn-floating secondary-content tooltipped" data-position="right" data-delay="50" data-tooltip="Delete friendship"><i class="material-icons">cancel</i></a>
+      </li>
+    </ul>
+  </div>
+
+</div>
+
+
+<div class="container" *ngIf="pendingFriends.length">
+  <h2>Pending friendship's requests</h2>
+  <br>
+  <br>
+  <div align="left">
+    <ul class="collection">
+      <li class="collection-item avatar" *ngFor="let pendingUser of pendingFriends; let i = index">
+        <img [src]="pendingUser.image" alt="" class="circle">
+        <span class="title"><strong><a [routerLink]="['/', 'user', pendingUser.id]">{{pendingUser.name | uppercase}}</a></strong></span>
+        <p><a [routerLink]="['/', 'user', pendingUser.id]" style="color: black;">Go to personal page</a></p>
+        <div class="col s6">
+        <a (click)="onCancel(i)" materialize="tooltip" class="btn-floating secondary-content tooltipped" data-position="right" data-delay="50" data-tooltip="Delete friendship"><i class="material-icons">cancel</i></a>
+        </div>
+        <div class="col s6">
+        <a (click)="onAccept(i)" materialize="tooltip" class="btn-floating my-content" data-position="left" data-delay="50" data-tooltip="Accept friendship"><i class="material-icons">person_add</i></a>
+        </div>
+      </li>
+    </ul>
+  </div>
+
+</div>
+
+<!-- Modal Structure -->
+<div id="modal1" class="modal" materialize="modal" [materializeParams]="[{dismissible: false}]" [materializeActions]="modalActions">
+  <div class="modal-content" *ngIf="friends[deleteIndex]">
+    <h4>Delete friendship with your soul mate {{friends[deleteIndex].name}}</h4>
+    <img [src]="friends[deleteIndex].image" class="circle" alt="" style="width: 100px; height: 100px;">
+    <p>Are you really sure?</p>
+  </div>
+  <div class="modal-footer">
+    <a class="waves-effect waves-green btn-flat" (click)="closeModal()">No</a>
+    <a class="modal-action modal-close waves-effect waves-green btn-flat" (click)="onDelete()">Yes</a>
+  </div>
+</div>

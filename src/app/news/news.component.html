@@ -1,0 +1,51 @@
+<div class="row">
+  <div class="col s12">
+    <ul class="tabs">
+      <li class="tab col s1"><a routerLink="/news/all/1">All</a></li>
+      <li *ngIf="userService.user.categories.indexOf('world')!=-1" class="tab col s1"><a routerLink="/news/world/1">World</a></li>
+      <li *ngIf="userService.user.categories.indexOf('culture')!=-1" class="tab col s1"><a routerLink="/news/culture/1">Culture</a></li>
+      <li *ngIf="userService.user.categories.indexOf('today')!=-1" class="tab col s1"><a routerLink="/news/today/1">Today</a></li>
+      <li *ngIf="userService.user.categories.indexOf('politics')!=-1" class="tab col s1"><a routerLink="/news/politics/1">Politics</a></li>
+      <li *ngIf="userService.user.categories.indexOf('science')!=-1" class="tab col s1"><a routerLink="/news/science/1">Science</a></li>
+      <li *ngIf="userService.user.categories.indexOf('sport')!=-1" class="tab col s1"><a routerLink="/news/sport/1">Sport</a></li>
+      <li *ngIf="userService.user.categories.indexOf('economy')!=-1" class="tab col s1"><a routerLink="/news/economy/1">Economy</a></li>
+    </ul>
+  </div>
+</div>
+
+
+<div align="center">
+  <div class="div" *ngIf="!ready">
+    <div class="progress">
+      <div class="indeterminate"></div>
+    </div>
+  </div>
+  <h2 *ngIf="userService.user">So many news here, {{ userService.user.name }}</h2>
+</div>
+
+<div class="container">
+  <div *ngFor="let i of range((page - 1) * perPage, (page - 1) * perPage + perPage, 2)">
+    <div class="row">
+      <div class="col s6" *ngIf="displayedItems.length > i">
+        <app-item [item]="displayedItems[i]"></app-item>
+      </div>
+      <div class="col s6" *ngIf="displayedItems.length> i + 1">
+        <app-item [item]="displayedItems[i+1]"></app-item>
+      </div>
+    </div>
+  </div>
+
+  <ul class="pagination">
+    <li [ngClass]="{'disabled': page <= 1}"><a [routerLink]="['/news', category, (page > 1) ? (page - 1) : page]" disabled="true"><-</a></li>
+
+    <li
+      *ngFor="let i of range(1, ceil(displayedItems.length/perPage) + 1, 1)"
+      class="waves-effect"
+      [ngClass]="{'active': page == i}"
+    >
+      <a [routerLink]="['/news', category, i]" routerLinkActive="active">{{i}}</a>
+    </li>
+
+    <li [ngClass]="{'disabled': page >= ceil(displayedItems.length/perPage)}"><a [routerLink]="['/news', category, (page < ceil(displayedItems.length/perPage)) ? (page + 1) : page ]">-></a></li>
+  </ul>
+</div>

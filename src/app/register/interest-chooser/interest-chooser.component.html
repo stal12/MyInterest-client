@@ -1,0 +1,64 @@
+<div class="container">
+  <h2>What are you interested in?</h2>
+  <br>
+  <form [formGroup]="categoryForm" (ngSubmit)="onSubmit()">
+    <div align="left">
+      <ul class="collection">
+        <li class="collection-item avatar">
+          <i class="circle material-icons"></i>
+          <span class="title"><strong>Culture</strong></span>
+          <p>News from everywhere about culture</p>
+          <input type="checkbox" id="culture" formControlName="culture" class="secondary-content"/>
+          <label for="culture" class="secondary-content"></label>
+        </li>
+        <li class="collection-item avatar">
+          <i class="circle material-icons">group </i>
+          <span class="title"><strong>Politics</strong></span>
+          <p>News from everywhere about politics</p>
+          <input type="checkbox" id="politics" formControlName="politics" class="secondary-content"/>
+          <label for="politics" class="secondary-content"></label>
+        </li>
+        <li class="collection-item avatar">
+          <i class="circle material-icons">fitness_center </i>
+          <span class="title"><strong>Sport</strong></span>
+          <p>News from everywhere about sport</p>
+          <input type="checkbox" id="sport" formControlName="sport" class="secondary-content"/>
+          <label for="sport" class="secondary-content"></label>
+        </li>
+        <li class="collection-item avatar">
+          <i class="circle material-icons">lightbulb_outline </i>
+          <span class="title"><strong>Science</strong></span>
+          <p>News from everywhere about science</p>
+          <input type="checkbox" id="science" formControlName="science" class="secondary-content"/>
+          <label for="science" class="secondary-content"></label>
+        </li>
+        <li class="collection-item avatar">
+          <i class="circle material-icons">videogame_asset </i>
+          <span class="title"><strong>Today</strong></span>
+          <p>News from everywhere about today</p>
+          <input type="checkbox" id="today" formControlName="today" class="secondary-content"/>
+          <label for="today" class="secondary-content"></label>
+        </li>
+        <li class="collection-item avatar">
+          <i class="circle material-icons">public </i>
+          <span class="title"><strong>World</strong></span>
+          <p>News from everywhere about what's all around you</p>
+          <input type="checkbox" id="world" formControlName="world" class="secondary-content"/>
+          <label for="world" class="secondary-content"></label>
+        </li>
+        <li class="collection-item avatar">
+          <i class="circle material-icons">account_balance </i>
+          <span class="title"><strong>Economy</strong></span>
+          <p>News from everywhere about economy</p>
+          <input type="checkbox" id="economy" formControlName="economy" class="secondary-content"/>
+          <label for="economy" class="secondary-content"></label>
+        </li>
+      </ul>
+
+    </div>
+    <div align="center">
+      <button class="btn waves-effect waves-light" type="submit" name="action" [disabled]="categoryForm.invalid">Submit</button>
+    </div>
+  </form>
+
+</div>

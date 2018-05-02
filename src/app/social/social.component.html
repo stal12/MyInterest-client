@@ -1,0 +1,87 @@
+<div align="center">
+  <h2>News from your friends</h2>
+</div>
+<div class="div" *ngIf="!ready">
+  <div class="progress">
+    <div class="indeterminate"></div>
+  </div>
+</div>
+
+<!--
+<div class="container">
+
+  <ul class="collection">
+    <li class="collection-item avatar" *ngFor="let post of posts">
+      <img [src]="post.user.image" alt="" class="circle">
+      <span class="title"><strong>{{post.user.firstName | uppercase}} {{post.user.lastName | uppercase}}</strong></span>
+
+          <p>{{post.title}}</p><br>
+
+          <a href="paginauser" *ngFor="let tag of post.tags">{{tag.firstName | uppercase }} {{tag.lastName | uppercase}}  </a>
+
+
+
+      <div class="card horizontal">
+        <div class="card-image">
+          <img [src]="post.item.thumbnail" >
+        </div>
+        <div class="card-stacked">
+          <div class="card-content">
+            <div class="card-title">{{post.item.title}}</div>
+            <p>{{post.item.description}}</p>
+          </div>
+          <div class="card-action">
+            <div class="row">
+              <div class="col s9"><a [href]="post.item.link">Vai all' articolo</a></div>
+              <div class="col s1"> <button class="btn-floating btn-small waves-effect waves-light red" (click)="onLike(post)"
+                                           [disabled]="post.liked"
+              >
+                <i class="material-icons">thumb_up</i></button></div>
+              <div class="col s2">{{post.likes.length}} likes</div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <ul class="collection">
+
+        <li class="collection-item avatar" *ngFor="let comment of post.comments">
+          <img [src]="comment.user.image" alt="" class="circle">
+          <div class="row">
+            <div class="col s10">
+              <span class="title"><strong>{{comment.user.firstName | uppercase}} {{comment.user.lastName | uppercase}}</strong></span>
+            </div>
+            <div class="col s2">
+              <span>{{comment.date | date:'short'}}</span>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col s12">
+              {{comment.text}}
+            </div>
+          </div>
+        </li>
+
+        <li class="collection-item avatar">
+          <img [src]="userService.user.image" alt="" class="circle">
+          <form (ngSubmit)="onSubmit(f, post)" #f="ngForm">
+            <div class="row">
+              <div class="col s10">
+                <input type="text" ngModel name="comment" placeholder="Scrivi un commento..." required>
+              </div>
+              <div class="col s2">
+                <button class="waves-effect waves-light btn" type="submit" [disabled]="!f.valid">Comment</button>
+              </div>
+            </div>
+          </form>
+        </li>
+
+      </ul>
+
+    </li>
+  </ul>
+</div>
+-->
+
+<app-post-list [posts]="posts"></app-post-list>
